@@ -37,6 +37,12 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagViewHolder>
         holder.tagTextView.setText(tags.get(position).getName());
     }
 
+    public void addTags(List<Tag> tags) {
+        int index = this.tags.size() - 1;
+        this.tags.addAll(tags);
+        notifyItemRangeInserted(index, tags.size());
+    }
+
     @Override
     public int getItemCount() {
         return tags.size();

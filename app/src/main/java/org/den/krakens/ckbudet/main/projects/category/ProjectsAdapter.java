@@ -1,5 +1,6 @@
 package org.den.krakens.ckbudet.main.projects.category;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.den.krakens.ckbudet.R;
+import org.den.krakens.ckbudet.main.Constants;
 import org.den.krakens.ckbudet.main.models.Project;
+import org.den.krakens.ckbudet.main.project.ProjectActivity;
 
 import java.util.List;
 
@@ -38,6 +41,13 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         Project project = projects.get(position);
         holder.projectTitleTextView.setText(project.getName());
         holder.tagsRecyclerView.setAdapter(new TagsAdapter(project.getTags()));
+
+        //todo handle click on RecyclerView
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), ProjectActivity.class);
+            intent.putExtra(Constants.projectId, project.getId());
+            view.getContext().startActivity(intent);
+        });
     }
 
     @Override
