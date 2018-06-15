@@ -9,9 +9,9 @@ import java.util.List;
 public class Project {
     private String name;
     private String description;
-    private List<String> tags;
+    private List<Tag> tags;
 
-    public Project(String name, String description, List<String> tags) {
+    public Project(String name, String description, List<Tag> tags) {
         this.name = name;
         this.description = description;
         this.tags = tags;
@@ -33,11 +33,11 @@ public class Project {
         this.description = description;
     }
 
-    public List<String> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 }

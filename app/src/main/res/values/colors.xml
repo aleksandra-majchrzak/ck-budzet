@@ -3,4 +3,5 @@
     <color name="colorPrimary">#d50000</color>
     <color name="colorPrimaryDark">#690000</color>
     <color name="colorAccent">#FFF9A825</color>
+    <color name="tagPill">#cfd8dc</color>
 </resources>

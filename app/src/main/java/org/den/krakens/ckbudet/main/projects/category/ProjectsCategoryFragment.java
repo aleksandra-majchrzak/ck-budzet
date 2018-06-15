@@ -3,6 +3,8 @@ package org.den.krakens.ckbudet.main.projects.category;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,10 @@ import android.widget.Toast;
 import org.den.krakens.ckbudet.R;
 import org.den.krakens.ckbudet.main.models.Project;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -21,6 +25,11 @@ import butterknife.ButterKnife;
 public class ProjectsCategoryFragment extends Fragment implements ProjectsCategoryVP.View {
 
     private ProjectsCategoryVP.Presenter presenter;
+
+    @BindView(R.id.projects_recyclerView)
+    RecyclerView projectsRecyclerView;
+
+    ProjectsAdapter adapter;
 
     public ProjectsCategoryFragment() {
         // Required empty public constructor
@@ -39,12 +48,20 @@ public class ProjectsCategoryFragment extends Fragment implements ProjectsCatego
 
         ButterKnife.bind(this, view);
 
+        initComponents();
+        presenter.loadProjects();
         return view;
+    }
+
+    private void initComponents() {
+        adapter = new ProjectsAdapter(new ArrayList<Project>());
+        projectsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        projectsRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public void updateProjects(List<Project> projects) {
-
+        adapter.addProjects(projects);
     }
 
     @Override
