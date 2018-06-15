@@ -1,13 +1,16 @@
 package org.den.krakens.ckbudet.main.projects;
 
-import java.util.ArrayList;
+import org.den.krakens.ckbudet.main.api.CkService;
+import org.den.krakens.ckbudet.main.api.listeners.OnGetCategoriesListener;
+import org.den.krakens.ckbudet.main.models.Category;
+
 import java.util.List;
 
 /**
  * Created by Mohru on 15.06.2018.
  */
 
-public class ProjectsPresenter implements ProjectsVP.Presenter {
+public class ProjectsPresenter implements ProjectsVP.Presenter, OnGetCategoriesListener {
 
     private ProjectsVP.View view;
 
@@ -16,13 +19,17 @@ public class ProjectsPresenter implements ProjectsVP.Presenter {
     }
 
     @Override
-    public List<String> getCategories() {
-        List<String> categories = new ArrayList<>();
-        categories.add("Sport");
-        categories.add("Edukacja");
-        categories.add("Rozrywka");
-        categories.add("Infrastruktura");
-        categories.add("Technologie");
-        return categories;
+    public void loadCategories() {
+        CkService.getInstance().getCategories(this);
+    }
+
+    @Override
+    public void onCategoriesLoaded(List<Category> categories) {
+        view.updateCategories(categories);
+    }
+
+    @Override
+    public void onError() {
+        view.showCategoryError();
     }
 }

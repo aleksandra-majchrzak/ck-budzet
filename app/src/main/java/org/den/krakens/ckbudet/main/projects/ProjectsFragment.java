@@ -8,8 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.den.krakens.ckbudet.R;
+import org.den.krakens.ckbudet.main.models.Category;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +30,8 @@ public class ProjectsFragment extends Fragment implements ProjectsVP.View, TabLa
     TabLayout tabLayout;
     @BindView(R.id.projects_viewPager)
     ViewPager viewPager;
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     public ProjectsFragment() {
         // Required empty public constructor
@@ -44,17 +51,11 @@ public class ProjectsFragment extends Fragment implements ProjectsVP.View, TabLa
         ButterKnife.bind(this, view);
 
         initComponents();
+        presenter.loadCategories();
         return view;
     }
 
     private void initComponents() {
-
-        for (String category : presenter.getCategories()) {
-            tabLayout.addTab(tabLayout.newTab().setText(category));
-        }
-
-        tabLayout.addOnTabSelectedListener(this);
-
         viewPager.setAdapter(new ProjectsPagerAdapter(getFragmentManager(), tabLayout));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(
                 tabLayout));
@@ -71,5 +72,21 @@ public class ProjectsFragment extends Fragment implements ProjectsVP.View, TabLa
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void updateCategories(List<Category> categories) {
+        progressBar.setVisibility(View.GONE);
+        for (Category category : categories) {
+            tabLayout.addTab(tabLayout.newTab().setText(category.getName()));
+        }
+        tabLayout.addOnTabSelectedListener(this);
+        viewPager.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCategoryError() {
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(getContext(), "Could not load categories", Toast.LENGTH_LONG).show();
     }
 }

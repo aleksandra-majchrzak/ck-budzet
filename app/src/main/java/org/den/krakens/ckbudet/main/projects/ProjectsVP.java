@@ -1,5 +1,7 @@
 package org.den.krakens.ckbudet.main.projects;
 
+import org.den.krakens.ckbudet.main.models.Category;
+
 import java.util.List;
 
 /**
@@ -8,10 +10,12 @@ import java.util.List;
 
 public interface ProjectsVP {
     interface View {
+        void updateCategories(List<Category> categories);
 
+        void showCategoryError();
     }
 
     interface Presenter {
-        List<String> getCategories();
+        void loadCategories();
     }
 }
