@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import org.den.krakens.ckbudet.R;
+import org.den.krakens.ckbudet.main.projects.ProjectsFragment;
+import org.den.krakens.ckbudet.main.projects.ProjectsPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +45,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_projects);
+
+        ProjectsFragment fragment = new ProjectsFragment();
+        fragment.setPresenter(new ProjectsPresenter(fragment));
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     @Override
@@ -78,7 +85,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_projects) {
-            // Handle the camera action
+            ProjectsFragment fragment = new ProjectsFragment();
+            fragment.setPresenter(new ProjectsPresenter(fragment));
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         } else if (id == R.id.nav_archive) {
 
         } else if (id == R.id.nav_yours) {
