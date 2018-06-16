@@ -4,11 +4,17 @@ import org.den.krakens.ckbudet.main.api.listeners.OnCreateProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetCategoriesListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectsListener;
+import org.den.krakens.ckbudet.main.api.listeners.OnLoginListener;
 import org.den.krakens.ckbudet.main.api.observers.CategoriesObserver;
 import org.den.krakens.ckbudet.main.api.observers.CreateProjectObserver;
 import org.den.krakens.ckbudet.main.api.observers.GetProjectObserver;
+import org.den.krakens.ckbudet.main.api.observers.LoginObserver;
 import org.den.krakens.ckbudet.main.api.observers.ProjectsObserver;
 import org.den.krakens.ckbudet.main.models.Project;
+import org.den.krakens.ckbudet.main.models.Token;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -22,10 +28,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Mohru on 15.06.2018.
  */
 
-public class CkService {
+public class CkService implements OnLoginListener {
 
     private static CkService service;
     private CkApi api;
+    private Token token;
 
     private final String BASE_URL = "https://ck-budget.herokuapp.com";
 
@@ -51,24 +58,44 @@ public class CkService {
         return service;
     }
 
+    public void login(String email, String password, OnLoginListener listener) {
+        List<OnLoginListener> listeners = new ArrayList<>();
+        listeners.add(listener);
+        listeners.add(this);
+        api.login(email, password).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new LoginObserver(listeners));
+    }
+
     public void getCategories(OnGetCategoriesListener listener) {
-        api.getCategories().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CategoriesObserver(listener));
+        api.getCategories(token.getToken()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CategoriesObserver(listener));
     }
 
     public void getProjects(String category, OnGetProjectsListener listener) {
-        api.getProjects(category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
+        api.getProjects(token.getToken(), category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
     }
 
     public void getArchiveProjects(String category, OnGetProjectsListener listener) {
-        api.getArchiveProjects(category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
+        api.getArchiveProjects(token.getToken(), category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
     }
 
-    public void getProject(String category, int projectId, OnGetProjectListener listener){
-        api.getProject(category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
+    public void getProject(String category, int projectId, OnGetProjectListener listener) {
+        api.getProject(token.getToken(), category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
+    }
+
+    public void getMyProjects(String category, int projectId, OnGetProjectListener listener) {
+        api.getProject(token.getToken(), category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
     }
 
     public void createProject(Project project, OnCreateProjectListener listener) {
-        api.createProject(project.getCategory().getName(), project).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CreateProjectObserver(listener));
+        api.createProject(token.getToken(), project.getCategory().getName(), project).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CreateProjectObserver(listener));
     }
 
+    @Override
+    public void onLoginSuccess(Token token) {
+        this.token = token;
+    }
+
+    @Override
+    public void onLoginError() {
+
+    }
 }
