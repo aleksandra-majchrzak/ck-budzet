@@ -25,6 +25,7 @@ import org.den.krakens.ckbudet.main.yourprojects.YourProjectsPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,6 +62,18 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
         this.setTitle(R.string.projects);
+        initShowcase();
+    }
+
+    private void initShowcase() {
+        new MaterialShowcaseView.Builder(this)
+                .setTarget(addProjectFab)
+                .setMaskColour(R.color.colorPrimaryDark)
+                .setDismissText("Rozumiem")
+                .setContentText("Każdy użytkownik może dodać 3 swoje projekty. Nowy projekt utworzysz klikając na ten przycisk.")
+                .setDelay(500)
+                .singleUse(Constants.createProjectShowcase)
+                .show();
     }
 
     @Override
