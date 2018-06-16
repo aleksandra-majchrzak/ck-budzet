@@ -117,7 +117,7 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
     @Override
     public void onProjectError() {
         progressBar.setVisibility(View.GONE);
-        Toast.makeText(this, "Nie udało się pobrać projektu.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.load_project_failure, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -133,7 +133,7 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @Override
     public void onVotedError() {
-        Toast.makeText(this, "Nie udało się zagłosować.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.voting_failure, Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.comments_ll)

@@ -87,6 +87,6 @@ public class ProjectsFragment extends Fragment implements ProjectsVP.View, TabLa
     @Override
     public void showCategoryError() {
         progressBar.setVisibility(View.GONE);
-        Toast.makeText(getContext(), "Could not load categories", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), R.string.load_categories_failure, Toast.LENGTH_LONG).show();
     }
 }

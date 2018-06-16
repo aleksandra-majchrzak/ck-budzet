@@ -65,6 +65,6 @@ public class YourProjectsFragment extends Fragment implements YourProjectsVP.Vie
 
     @Override
     public void showProjectsError() {
-        Toast.makeText(getContext(), "Could not load projects", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), R.string.load_projects_failure, Toast.LENGTH_LONG).show();
     }
 }

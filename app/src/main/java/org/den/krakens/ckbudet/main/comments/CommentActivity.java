@@ -35,7 +35,7 @@ public class CommentActivity extends AppCompatActivity {
 
     @OnClick(R.id.send_button)
     public void onSendButtonClick() {
-        Toast.makeText(this, "Komentarz dodany.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.comment_added, Toast.LENGTH_LONG).show();
         this.finish();
     }
 }

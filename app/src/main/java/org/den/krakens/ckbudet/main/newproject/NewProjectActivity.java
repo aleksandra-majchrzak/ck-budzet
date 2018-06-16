@@ -90,7 +90,7 @@ public class NewProjectActivity extends AppCompatActivity implements NewProjectV
                 descriptionEditText.getText().toString(),
                 placeEditText.getText().toString(),
                 (Category) categorySpinner.getSelectedItem(),
-                (String) budgetSpinner.getSelectedItem(),
+                budgetSpinner.getSelectedItemPosition(),
                 tagsAdapter.getTags(),
                 null,
                 null);
@@ -130,17 +130,17 @@ public class NewProjectActivity extends AppCompatActivity implements NewProjectV
 
     @Override
     public void showCategoryError() {
-        Toast.makeText(this, "Nie udało się dodać pobrać kategorii.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.load_category_failure, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onProjectCreated() {
-        Toast.makeText(this, "Dodano projekt.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.project_added, Toast.LENGTH_LONG).show();
         this.finish();
     }
 
     @Override
     public void onProjectError() {
-        Toast.makeText(this, "Nie udało się dodać projektu.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.add_project_failure, Toast.LENGTH_LONG).show();
     }
 }

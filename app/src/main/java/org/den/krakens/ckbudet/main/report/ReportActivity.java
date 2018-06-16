@@ -29,12 +29,12 @@ public class ReportActivity extends AppCompatActivity implements ReportVP.View {
 
     @Override
     public void onProjectReported() {
-        Toast.makeText(this, "Projekt został zgłoszony do administratora.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.project_reported, Toast.LENGTH_LONG).show();
         finish();
     }
 
     @Override
     public void onProjectError() {
-        Toast.makeText(this, "Nie można zgłosić projektu.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.report_project_failure, Toast.LENGTH_LONG).show();
     }
 }

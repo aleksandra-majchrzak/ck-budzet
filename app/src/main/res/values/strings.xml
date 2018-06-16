@@ -23,4 +23,17 @@
     <string name="email">email</string>
     <string name="password">hasło</string>
     <string name="log_in">ZALOGUJ</string>
+    <string name="comment_added">Komentarz dodany.</string>
+    <string name="login_failure">Nie udało się zalogować.</string>
+    <string name="load_category_failure">Nie udało się dodać pobrać kategorii.</string>
+    <string name="project_added">Dodano projekt.</string>
+    <string name="add_project_failure">Nie udało się dodać projektu.</string>
+    <string name="load_project_failure">Nie udało się pobrać projektu.</string>
+    <string name="voting_failure">Nie udało się zagłosować.</string>
+    <string name="load_projects_failure">Could not load projects</string>
+    <string name="load_categories_failure">Could not load categories</string>
+    <string name="project_reported">Projekt został zgłoszony do administratora.</string>
+    <string name="report_project_failure">Nie można zgłosić projektu.</string>
+    <string name="got_it">Rozumiem</string>
+    <string name="add_projects_info">Każdy użytkownik może dodać 3 swoje projekty. Nowy projekt utworzysz klikając na ten przycisk.</string>
 </resources>

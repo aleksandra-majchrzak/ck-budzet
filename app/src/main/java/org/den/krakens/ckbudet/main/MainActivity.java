@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity
         new MaterialShowcaseView.Builder(this)
                 .setTarget(addProjectFab)
                 .setMaskColour(R.color.colorPrimaryDark)
-                .setDismissText("Rozumiem")
-                .setContentText("Każdy użytkownik może dodać 3 swoje projekty. Nowy projekt utworzysz klikając na ten przycisk.")
+                .setDismissText(getString(R.string.got_it))
+                .setContentText(getString(R.string.add_projects_info))
                 .setDelay(500)
                 .singleUse(Constants.createProjectShowcase)
                 .show();

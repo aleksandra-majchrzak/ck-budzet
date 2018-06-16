@@ -9,4 +9,7 @@ public interface Constants {
     String projectName = "project_title";
     String projectCategory = "project_category";
     String createProjectShowcase = "create_project_showcase";
+
+    String budgetSmall = "small";
+    String budgetBig = "big";
 }

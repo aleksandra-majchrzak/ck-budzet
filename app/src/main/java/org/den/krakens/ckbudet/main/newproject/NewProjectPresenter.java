@@ -1,5 +1,6 @@
 package org.den.krakens.ckbudet.main.newproject;
 
+import org.den.krakens.ckbudet.main.Constants;
 import org.den.krakens.ckbudet.main.api.CkService;
 import org.den.krakens.ckbudet.main.api.listeners.OnCreateProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetCategoriesListener;
@@ -37,8 +38,8 @@ public class NewProjectPresenter implements NewProjectVP.Presenter, OnGetCategor
     }
 
     @Override
-    public void addProject(String title, String description, String place, Category category, String budgetType, List<Tag> tags, Double lat, Double lng) {
-        tags.add(new Tag(0, budgetType));
+    public void addProject(String title, String description, String place, Category category, int budgetType, List<Tag> tags, Double lat, Double lng) {
+        tags.add(new Tag(0, budgetType == 0 ? Constants.budgetSmall : Constants.budgetBig));
         Project project = new Project(title, description, tags);
         project.setPlace(place);
         project.setCategory(category);

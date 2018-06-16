@@ -27,6 +27,6 @@ public interface NewProjectVP {
 
         void loadBudgetTypes();
 
-        void addProject(String title, String description, String place, Category category, String budgetType, List<Tag> tags, Double lat, Double lng);
+        void addProject(String title, String description, String place, Category category, int budgetType, List<Tag> tags, Double lat, Double lng);
     }
 }

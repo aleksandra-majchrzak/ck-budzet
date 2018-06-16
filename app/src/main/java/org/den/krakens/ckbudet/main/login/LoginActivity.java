@@ -49,6 +49,6 @@ public class LoginActivity extends AppCompatActivity implements LoginVP.View {
 
     @Override
     public void onLoginError() {
-        Toast.makeText(this, "Nie udało się zalogować.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.login_failure, Toast.LENGTH_LONG).show();
     }
 }
