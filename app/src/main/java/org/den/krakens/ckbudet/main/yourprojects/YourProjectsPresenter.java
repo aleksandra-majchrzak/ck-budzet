@@ -29,4 +29,9 @@ public class YourProjectsPresenter implements YourProjectsVP.Presenter {
 
         view.updateYourProjects(projects);
     }
+
+    @Override
+    public void deleteProject(int projectId) {
+
+    }
 }

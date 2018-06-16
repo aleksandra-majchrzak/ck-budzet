@@ -17,5 +17,8 @@ public interface YourProjectsVP {
 
     interface Presenter {
         void loadYourProjects();
+
+        void deleteProject(int projectId);
+
     }
 }

@@ -36,4 +36,5 @@
     <string name="report_project_failure">Nie można zgłosić projektu.</string>
     <string name="got_it">Rozumiem</string>
     <string name="add_projects_info">Każdy użytkownik może dodać 3 swoje projekty. Nowy projekt utworzysz klikając na ten przycisk.</string>
+    <string name="delete_project_confirmation">Czy na pewno chcesz usunąć ten projekt?</string>
 </resources>
