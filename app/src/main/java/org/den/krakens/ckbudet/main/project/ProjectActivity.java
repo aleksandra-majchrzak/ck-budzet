@@ -3,6 +3,7 @@ package org.den.krakens.ckbudet.main.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -119,6 +120,20 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         Toast.makeText(this, "Nie udało się pobrać projektu.", Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onVoted() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.vote_thanks)
+                .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
+                })
+                .show();
+    }
+
+    @Override
+    public void onVotedError() {
+        Toast.makeText(this, "Nie udało się zagłosować.", Toast.LENGTH_LONG).show();
+    }
+
     @OnClick(R.id.comments_ll)
     public void onCommentsClick() {
         commentsConstrainLayout.setVisibility(View.VISIBLE);
@@ -134,7 +149,14 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @OnClick(R.id.vote_button)
     public void onVoteButtonClick() {
-
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.vote_confirmation)
+                .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
+                    presenter.vote();
+                })
+                .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                })
+                .show();
     }
 
     @OnClick(R.id.report_button)

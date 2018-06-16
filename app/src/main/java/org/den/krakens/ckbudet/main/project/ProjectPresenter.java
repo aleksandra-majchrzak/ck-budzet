@@ -39,6 +39,11 @@ public class ProjectPresenter implements ProjectVP.Presenter, OnGetProjectListen
     }
 
     @Override
+    public void vote() {
+        view.onVoted();
+    }
+
+    @Override
     public void onGetProjectSuccess(Project project) {
         this.project = project;
         view.updateProject(project);

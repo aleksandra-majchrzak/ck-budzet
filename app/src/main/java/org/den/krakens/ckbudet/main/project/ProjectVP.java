@@ -11,6 +11,10 @@ public interface ProjectVP {
         void updateProject(Project project);
 
         void onProjectError();
+
+        void onVoted();
+
+        void onVotedError();
     }
 
     interface Presenter {
@@ -19,5 +23,7 @@ public interface ProjectVP {
         String getProjectName();
 
         boolean isProjectArchived();
+
+        void vote();
     }
 }

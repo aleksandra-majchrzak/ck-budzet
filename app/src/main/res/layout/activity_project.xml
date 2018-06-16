@@ -14,7 +14,6 @@
         android:animateLayoutChanges="true"
         android:paddingEnd="10dp"
         android:paddingStart="10dp"
-        android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_cl"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/title_tv"
