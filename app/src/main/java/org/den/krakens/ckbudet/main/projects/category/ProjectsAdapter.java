@@ -39,7 +39,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
     @Override
     public void onBindViewHolder(ProjectsViewHolder holder, int position) {
         Project project = projects.get(position);
-        holder.projectTitleTextView.setText(project.getName());
+        holder.projectTitleTextView.setText(project.getTitle());
         holder.tagsRecyclerView.setAdapter(new TagsAdapter(project.getTags()));
 
         //todo handle click on RecyclerView

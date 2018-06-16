@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Mohru on 15.06.2018.
@@ -22,7 +23,7 @@ public interface CkApi {
     Single<List<Category>> getCategories();
 
     @GET("api/categories/{category}/projects")
-    Single<List<Project>> getProjects(@Path("category") String category);
+    Single<List<Project>> getProjects(@Path("category") String category, @Query("per_page") int perPage, @Query("page") int page);
 
     @POST("api/categories/{category}")
     Single<ResponseBody> createProject(@Path("category") String category, @Body Project project);

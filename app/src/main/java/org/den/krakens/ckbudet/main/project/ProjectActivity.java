@@ -78,7 +78,7 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @Override
     public void updateProject(Project project) {
-        titleTextView.setText(project.getName());
+        titleTextView.setText(project.getTitle());
         categoryTextView.setText(project.getCategory().getName());
         descriptionTextView.setText(project.getDescription());
         placeTextview.setText(project.getPlace());

@@ -54,7 +54,7 @@ public class CkService {
     }
 
     public void getProjects(String category, OnGetProjectsListener listener) {
-        api.getProjects(category).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
+        api.getProjects(category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
     }
 
     public void createProject(Project project, OnCreateProjectListener listener) {

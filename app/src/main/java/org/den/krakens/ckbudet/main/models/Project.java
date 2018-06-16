@@ -8,17 +8,18 @@ import java.util.List;
 
 public class Project {
     private int id;
-    private String name;
+    private String title;
     private Category category;
     private String description;
     private Double lat;
     private Double lng;
     private String place;
+    private String status;
     private List<Tag> tags;
     private List<Comment> comments;
 
-    public Project(String name, String description, List<Tag> tags) {
-        this.name = name;
+    public Project(String title, String description, List<Tag> tags) {
+        this.title = title;
         this.description = description;
         this.tags = tags;
     }
@@ -31,12 +32,12 @@ public class Project {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -85,6 +86,14 @@ public class Project {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<Comment> getComments() {
