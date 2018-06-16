@@ -1,5 +1,6 @@
 package org.den.krakens.ckbudet.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import org.den.krakens.ckbudet.R;
+import org.den.krakens.ckbudet.main.newproject.NewProjectActivity;
 import org.den.krakens.ckbudet.main.projects.ProjectsFragment;
 import org.den.krakens.ckbudet.main.projects.ProjectsPresenter;
 
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.add_project_fab)
     public void onNewProjectClick() {
-        //todo add new project
+        Intent intent = new Intent(this, NewProjectActivity.class);
+        startActivity(intent);
     }
 }

@@ -24,6 +24,10 @@
         <activity
             android:name=".main.project.ProjectActivity"
             android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".main.newproject.NewProjectActivity"
+            android:label="@string/new_project"
+            android:parentActivityName=".main.MainActivity" />
     </application>
 
 </manifest>
