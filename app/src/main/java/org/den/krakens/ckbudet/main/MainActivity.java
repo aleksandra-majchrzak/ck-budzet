@@ -19,6 +19,8 @@ import org.den.krakens.ckbudet.main.contact.ContactFragment;
 import org.den.krakens.ckbudet.main.newproject.NewProjectActivity;
 import org.den.krakens.ckbudet.main.projects.ProjectsFragment;
 import org.den.krakens.ckbudet.main.projects.ProjectsPresenter;
+import org.den.krakens.ckbudet.main.yourprojects.YourProjectsFragment;
+import org.den.krakens.ckbudet.main.yourprojects.YourProjectsPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -109,6 +111,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_yours) {
             this.setTitle(R.string.your_projects);
             addProjectFab.setVisibility(View.GONE);
+            YourProjectsFragment fragment = new YourProjectsFragment();
+            fragment.setPresenter(new YourProjectsPresenter(fragment));
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
         } else if (id == R.id.nav_contact) {
             this.setTitle(R.string.contact);
