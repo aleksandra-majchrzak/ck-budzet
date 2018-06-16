@@ -46,6 +46,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Projec
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ProjectActivity.class);
             intent.putExtra(Constants.projectId, project.getId());
+            intent.putExtra(Constants.projectCategory, project.getCategory().getName());
             view.getContext().startActivity(intent);
         });
     }

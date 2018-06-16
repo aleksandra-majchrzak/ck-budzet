@@ -9,6 +9,8 @@ import org.den.krakens.ckbudet.main.models.Project;
 public interface ProjectVP {
     interface View {
         void updateProject(Project project);
+
+        void onProjectError();
     }
 
     interface Presenter {

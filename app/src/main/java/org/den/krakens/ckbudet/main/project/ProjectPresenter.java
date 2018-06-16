@@ -1,45 +1,28 @@
 package org.den.krakens.ckbudet.main.project;
 
-import org.den.krakens.ckbudet.main.models.Category;
-import org.den.krakens.ckbudet.main.models.Comment;
+import org.den.krakens.ckbudet.main.api.CkService;
+import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectListener;
 import org.den.krakens.ckbudet.main.models.Project;
-import org.den.krakens.ckbudet.main.models.Tag;
-import org.den.krakens.ckbudet.main.models.User;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Mohru on 15.06.2018.
  */
 
-public class ProjectPresenter implements ProjectVP.Presenter {
+public class ProjectPresenter implements ProjectVP.Presenter, OnGetProjectListener {
     private ProjectVP.View view;
     private int projectId;
+    private String projectCategory;
     private Project project;
 
-    public ProjectPresenter(ProjectVP.View view, int projectId) {
+    public ProjectPresenter(ProjectVP.View view, int projectId, String projectCategory) {
         this.view = view;
         this.projectId = projectId;
+        this.projectCategory = projectCategory;
     }
 
     @Override
     public void loadProject() {
-        //todo add load project
-        Project project = new Project("Mój super projekt na wielki miedziany krzyż", "Chcę postawić wielki 10 " +
-                "mentrowy miedziany krzyż na środku rynku tuż pod oknami pana prezydenta", Arrays.asList(new Tag(1, "duży")));
-        project.setPlace("sam srodek rynku");
-        project.setCategory(new Category(1, "edukacja"));
-
-        List<Comment> commentList = new ArrayList<>();
-        commentList.add(new Comment(1, "comment content", new User(1, "lama mama")));
-        commentList.add(new Comment(2, "comment content 2", new User(1, "lama mama")));
-        commentList.add(new Comment(3, "comment content 3", new User(1, "lama mama")));
-        project.setComments(commentList);
-
-        this.project = project;
-        view.updateProject(project);
+        CkService.getInstance().getProject(projectCategory, projectId, this);
     }
 
     @Override
@@ -48,5 +31,16 @@ public class ProjectPresenter implements ProjectVP.Presenter {
             return project.getTitle();
         else
             return "";
+    }
+
+    @Override
+    public void onGetProjectSuccess(Project project) {
+        this.project = project;
+        view.updateProject(project);
+    }
+
+    @Override
+    public void onGetProjectError() {
+        view.onProjectError();
     }
 }

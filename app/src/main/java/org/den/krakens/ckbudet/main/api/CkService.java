@@ -2,9 +2,11 @@ package org.den.krakens.ckbudet.main.api;
 
 import org.den.krakens.ckbudet.main.api.listeners.OnCreateProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetCategoriesListener;
+import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectsListener;
 import org.den.krakens.ckbudet.main.api.observers.CategoriesObserver;
 import org.den.krakens.ckbudet.main.api.observers.CreateProjectObserver;
+import org.den.krakens.ckbudet.main.api.observers.GetProjectObserver;
 import org.den.krakens.ckbudet.main.api.observers.ProjectsObserver;
 import org.den.krakens.ckbudet.main.models.Project;
 
@@ -59,6 +61,10 @@ public class CkService {
 
     public void getArchiveProjects(String category, OnGetProjectsListener listener) {
         api.getArchiveProjects(category, 20, 1).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new ProjectsObserver(listener));
+    }
+
+    public void getProject(String category, int projectId, OnGetProjectListener listener){
+        api.getProject(category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
     }
 
     public void createProject(Project project, OnCreateProjectListener listener) {

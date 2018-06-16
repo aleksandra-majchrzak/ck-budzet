@@ -3,12 +3,16 @@ package org.den.krakens.ckbudet.main.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -48,6 +52,8 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
     RecyclerView commentsRecyclerView;
     @BindView(R.id.vote_button)
     Button voteButton;
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     TagsAdapter tagsAapter;
     CommentsAdapter commentsAdapter;
@@ -64,8 +70,20 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         presenter.loadProject();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setPresenter() {
-        this.presenter = new ProjectPresenter(this, getIntent().getIntExtra(Constants.projectId, 0));
+        this.presenter = new ProjectPresenter(this,
+                getIntent().getIntExtra(Constants.projectId, 0),
+                getIntent().getStringExtra(Constants.projectCategory));
     }
 
     private void initComponents() {
@@ -81,6 +99,7 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @Override
     public void updateProject(Project project) {
+        progressBar.setVisibility(View.GONE);
         titleTextView.setText(project.getTitle());
         categoryTextView.setText(project.getCategory().getName());
         descriptionTextView.setText(project.getDescription());
@@ -88,6 +107,12 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         tagsAapter.addTags(project.getTags());
         commentsAdapter.addComments(project.getComments());
         commentsCountTextView.setText(String.format("(%s)", project.getComments().size()));
+    }
+
+    @Override
+    public void onProjectError() {
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(this, "Nie udało się pobrać projektu.", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.comments_ll)

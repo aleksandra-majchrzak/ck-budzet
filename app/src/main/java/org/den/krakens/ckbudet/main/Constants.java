@@ -7,4 +7,5 @@ package org.den.krakens.ckbudet.main;
 public interface Constants {
     String projectId = "project_id";
     String projectName = "project_title";
+    String projectCategory = "project_category";
 }
