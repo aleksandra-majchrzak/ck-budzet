@@ -2,6 +2,7 @@ package org.den.krakens.ckbudet.main.comments;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.den.krakens.ckbudet.R;
@@ -20,6 +21,16 @@ public class CommentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         this.setTitle(getIntent().getStringExtra(Constants.projectName));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.send_button)
