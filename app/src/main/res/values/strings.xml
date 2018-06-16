@@ -11,4 +11,8 @@
     <string name="twoje_projekty">Twoje projekty</string>
     <string name="kontakt">Kontakt</string>
     <string name="new_project">Nowy projekt</string>
+    <string name="contact">Kontakt</string>
+    <string name="archive_projects">Projekty archiwalne</string>
+    <string name="your_projects">Twoje projekty</string>
+    <string name="contact_content">Treść uwagi</string>
 </resources>

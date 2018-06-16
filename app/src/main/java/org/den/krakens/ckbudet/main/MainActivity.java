@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         ProjectsFragment fragment = new ProjectsFragment();
         fragment.setPresenter(new ProjectsPresenter(fragment, false));
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+
+        this.setTitle(R.string.projects);
     }
 
     @Override
@@ -92,20 +94,24 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_projects) {
+            this.setTitle(R.string.projects);
             addProjectFab.setVisibility(View.VISIBLE);
             ProjectsFragment fragment = new ProjectsFragment();
             fragment.setPresenter(new ProjectsPresenter(fragment, false));
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         } else if (id == R.id.nav_archive) {
+            this.setTitle(getString(R.string.archive_projects));
             addProjectFab.setVisibility(View.GONE);
             ProjectsFragment fragment = new ProjectsFragment();
             fragment.setPresenter(new ProjectsPresenter(fragment, true));
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
         } else if (id == R.id.nav_yours) {
+            this.setTitle(R.string.your_projects);
             addProjectFab.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_contact) {
+            this.setTitle(R.string.contact);
             addProjectFab.setVisibility(View.GONE);
             ContactFragment fragment = new ContactFragment();
             //fragment.setPresenter(new ProjectsPresenter(fragment));

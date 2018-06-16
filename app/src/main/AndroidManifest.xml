@@ -31,6 +31,9 @@
             android:label="@string/new_project"
             android:parentActivityName=".main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.comments.CommentActivity"
+            android:parentActivityName=".main.project.ProjectActivity" />
     </application>
 
 </manifest>

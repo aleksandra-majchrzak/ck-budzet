@@ -13,5 +13,7 @@ public interface ProjectVP {
 
     interface Presenter {
         void loadProject();
+
+        String getProjectName();
     }
 }

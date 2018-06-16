@@ -1,5 +1,6 @@
 package org.den.krakens.ckbudet.main.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 
 import org.den.krakens.ckbudet.R;
 import org.den.krakens.ckbudet.main.Constants;
+import org.den.krakens.ckbudet.main.comments.CommentActivity;
 import org.den.krakens.ckbudet.main.models.Project;
 import org.den.krakens.ckbudet.main.projects.category.TagsAdapter;
 
@@ -94,7 +96,9 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @OnClick(R.id.add_comment_button)
     public void onAddCommentClick() {
-
+        Intent intent = new Intent(this, CommentActivity.class);
+        intent.putExtra(Constants.projectName, presenter.getProjectName());
+        startActivity(intent);
     }
 
     @OnClick(R.id.vote_button)
