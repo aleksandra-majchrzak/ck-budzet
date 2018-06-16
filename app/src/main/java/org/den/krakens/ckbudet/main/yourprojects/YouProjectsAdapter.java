@@ -52,7 +52,7 @@ public class YouProjectsAdapter extends RecyclerView.Adapter<YouProjectsAdapter.
             Intent intent = new Intent(view.getContext(), ProjectActivity.class);
             intent.putExtra(Constants.projectId, project.getId());
             intent.putExtra(Constants.projectCategory, project.getCategory().getName());
-            //view.getContext().startActivity(intent);
+            view.getContext().startActivity(intent);
         });
     }
 
