@@ -3,7 +3,6 @@ package org.den.krakens.ckbudet.main.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,6 +53,8 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
     Button voteButton;
     @BindView(R.id.progress)
     ProgressBar progressBar;
+    @BindView(R.id.bottom_cl)
+    ConstraintLayout bottomConstraintLayout;
 
     TagsAdapter tagsAapter;
     CommentsAdapter commentsAdapter;
@@ -107,6 +108,9 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         tagsAapter.addTags(project.getTags());
         commentsAdapter.addComments(project.getComments());
         commentsCountTextView.setText(String.format("(%s)", project.getComments().size()));
+
+        if (!presenter.isProjectArchived())
+            bottomConstraintLayout.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -17,5 +17,7 @@ public interface ProjectVP {
         void loadProject();
 
         String getProjectName();
+
+        boolean isProjectArchived();
     }
 }

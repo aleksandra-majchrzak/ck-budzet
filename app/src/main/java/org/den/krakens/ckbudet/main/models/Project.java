@@ -1,5 +1,7 @@
 package org.den.krakens.ckbudet.main.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,8 @@ public class Project {
     private Double lng;
     private String place;
     private String status;
+    @SerializedName("is_archived")
+    private boolean isArchived;
     private List<Tag> tags;
     private List<Comment> comments;
 
@@ -94,6 +98,14 @@ public class Project {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 
     public List<Comment> getComments() {

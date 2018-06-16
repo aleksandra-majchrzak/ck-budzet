@@ -34,6 +34,11 @@ public class ProjectPresenter implements ProjectVP.Presenter, OnGetProjectListen
     }
 
     @Override
+    public boolean isProjectArchived() {
+        return project == null || project.isArchived();
+    }
+
+    @Override
     public void onGetProjectSuccess(Project project) {
         this.project = project;
         view.updateProject(project);
