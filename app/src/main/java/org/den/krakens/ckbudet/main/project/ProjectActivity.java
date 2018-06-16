@@ -18,6 +18,7 @@ import org.den.krakens.ckbudet.main.Constants;
 import org.den.krakens.ckbudet.main.comments.CommentActivity;
 import org.den.krakens.ckbudet.main.models.Project;
 import org.den.krakens.ckbudet.main.projects.category.TagsAdapter;
+import org.den.krakens.ckbudet.main.report.ReportActivity;
 
 import java.util.ArrayList;
 
@@ -98,6 +99,7 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
     public void onAddCommentClick() {
         Intent intent = new Intent(this, CommentActivity.class);
         intent.putExtra(Constants.projectName, presenter.getProjectName());
+        intent.putExtra(Constants.projectId, getIntent().getIntExtra(Constants.projectId, 0));
         startActivity(intent);
     }
 
@@ -108,6 +110,8 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     @OnClick(R.id.report_button)
     public void onReportButtonClick() {
-
+        Intent intent = new Intent(this, ReportActivity.class);
+        intent.putExtra(Constants.projectId, getIntent().getIntExtra(Constants.projectId, 0));
+        startActivity(intent);
     }
 }

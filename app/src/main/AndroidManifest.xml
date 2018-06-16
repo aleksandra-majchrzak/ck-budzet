@@ -34,6 +34,9 @@
         <activity
             android:name=".main.comments.CommentActivity"
             android:parentActivityName=".main.project.ProjectActivity" />
+        <activity
+            android:name=".main.report.ReportActivity"
+            android:parentActivityName=".main.project.ProjectActivity" />
     </application>
 
 </manifest>
