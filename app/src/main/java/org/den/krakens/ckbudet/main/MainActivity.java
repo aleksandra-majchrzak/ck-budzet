@@ -2,6 +2,7 @@ package org.den.krakens.ckbudet.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,9 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import org.den.krakens.ckbudet.R;
+import org.den.krakens.ckbudet.main.contact.ContactFragment;
 import org.den.krakens.ckbudet.main.newproject.NewProjectActivity;
 import org.den.krakens.ckbudet.main.projects.ProjectsFragment;
 import org.den.krakens.ckbudet.main.projects.ProjectsPresenter;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView;
     @BindView(R.id.container)
     FrameLayout container;
+    @BindView(R.id.add_project_fab)
+    FloatingActionButton addProjectFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,15 +92,21 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_projects) {
+            addProjectFab.setVisibility(View.VISIBLE);
             ProjectsFragment fragment = new ProjectsFragment();
             fragment.setPresenter(new ProjectsPresenter(fragment));
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         } else if (id == R.id.nav_archive) {
+            addProjectFab.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_yours) {
+            addProjectFab.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_contact) {
-
+            addProjectFab.setVisibility(View.GONE);
+            ContactFragment fragment = new ContactFragment();
+            //fragment.setPresenter(new ProjectsPresenter(fragment));
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
