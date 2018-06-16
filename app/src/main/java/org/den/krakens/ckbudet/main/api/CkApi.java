@@ -1,6 +1,7 @@
 package org.den.krakens.ckbudet.main.api;
 
 import org.den.krakens.ckbudet.main.models.Category;
+import org.den.krakens.ckbudet.main.models.Comment;
 import org.den.krakens.ckbudet.main.models.Project;
 import org.den.krakens.ckbudet.main.models.Token;
 
@@ -42,4 +43,7 @@ public interface CkApi {
 
     @POST("api/categories/{category}")
     Single<ResponseBody> createProject(@Header(AUTHORIZATION_TOKEN) String token, @Path("category") String category, @Body Project project);
+
+    @POST("api/categories/{category}/projects/{id}/comments")
+    Single<Comment> addComment(@Header(AUTHORIZATION_TOKEN) String token, @Path("category") String category, @Path("id") int projectId, @Body Comment comment);
 }

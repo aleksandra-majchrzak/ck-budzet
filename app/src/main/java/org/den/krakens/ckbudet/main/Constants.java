@@ -12,4 +12,6 @@ public interface Constants {
 
     String budgetSmall = "small";
     String budgetBig = "big";
+
+    String commentExtra = "comment_extra";
 }

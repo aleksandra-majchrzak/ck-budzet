@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -47,6 +46,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
     @Override
     public int getItemCount() {
         return comments.size();
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        notifyItemInserted(comments.size() - 1);
     }
 
     public void addComments(List<Comment> comments) {

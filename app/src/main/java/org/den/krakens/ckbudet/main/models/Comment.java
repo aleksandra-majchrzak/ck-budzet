@@ -1,10 +1,12 @@
 package org.den.krakens.ckbudet.main.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Mohru on 15.06.2018.
  */
 
-public class Comment {
+public class Comment implements Serializable {
     private int id;
     private String content;
     private User user;

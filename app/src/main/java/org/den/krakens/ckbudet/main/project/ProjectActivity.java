@@ -1,5 +1,6 @@
 package org.den.krakens.ckbudet.main.project;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -20,6 +21,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import org.den.krakens.ckbudet.R;
 import org.den.krakens.ckbudet.main.Constants;
 import org.den.krakens.ckbudet.main.comments.CommentActivity;
+import org.den.krakens.ckbudet.main.models.Comment;
 import org.den.krakens.ckbudet.main.models.Project;
 import org.den.krakens.ckbudet.main.projects.category.TagsAdapter;
 import org.den.krakens.ckbudet.main.report.ReportActivity;
@@ -59,6 +61,8 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
 
     TagsAdapter tagsAapter;
     CommentsAdapter commentsAdapter;
+
+    private final int ADD_COMMENT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +150,9 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         Intent intent = new Intent(this, CommentActivity.class);
         intent.putExtra(Constants.projectName, presenter.getProjectName());
         intent.putExtra(Constants.projectId, getIntent().getIntExtra(Constants.projectId, 0));
-        startActivity(intent);
+        intent.putExtra(Constants.projectId, getIntent().getIntExtra(Constants.projectId, 0));
+        intent.putExtra(Constants.projectCategory, getIntent().getStringExtra(Constants.projectCategory));
+        startActivityForResult(intent, ADD_COMMENT);
     }
 
     @OnClick(R.id.vote_button)
@@ -166,5 +172,22 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra(Constants.projectId, getIntent().getIntExtra(Constants.projectId, 0));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case ADD_COMMENT:
+                if (resultCode == Activity.RESULT_OK) {
+                    Comment comment = (Comment) data.getSerializableExtra(Constants.commentExtra);
+                    if (comment != null) {
+                        commentsAdapter.addComment(comment);
+                        commentsCountTextView.setText(String.format("(%s)", commentsAdapter.getItemCount()));
+                    }
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
