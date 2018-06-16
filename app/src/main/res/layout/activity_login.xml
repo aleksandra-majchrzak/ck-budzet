@@ -7,18 +7,10 @@
     android:padding="20dp"
     tools:context="org.den.krakens.ckbudet.main.login.LoginActivity">
 
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:shadowColor="@color/gray"
-        android:shadowDx="2"
-        android:shadowRadius="5"
-        android:text="CK budżet"
-        android:textColor="@color/colorPrimary"
-        android:textSize="45dp"
-        android:textStyle="bold"
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
