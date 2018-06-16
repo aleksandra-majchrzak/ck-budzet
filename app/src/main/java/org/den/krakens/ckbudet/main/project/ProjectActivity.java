@@ -125,7 +125,9 @@ public class ProjectActivity extends AppCompatActivity implements ProjectVP.View
         new AlertDialog.Builder(this)
                 .setMessage(R.string.vote_thanks)
                 .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
+                    voteButton.setEnabled(false);
                 })
+                .setCancelable(false)
                 .show();
     }
 

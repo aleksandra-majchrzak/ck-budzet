@@ -5,4 +5,5 @@
     <color name="colorAccent">#FFF9A825</color>
     <color name="tagPill">#cfd8dc</color>
     <color name="gray_light">#f5f5f5</color>
+    <color name="gray">#bdbdbd</color>
 </resources>
