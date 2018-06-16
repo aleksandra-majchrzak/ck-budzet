@@ -56,7 +56,7 @@ public class ProjectsFragment extends Fragment implements ProjectsVP.View, TabLa
     }
 
     private void initComponents() {
-        viewPager.setAdapter(new ProjectsPagerAdapter(getFragmentManager(), tabLayout));
+        viewPager.setAdapter(new ProjectsPagerAdapter(getFragmentManager(), tabLayout, presenter.isArchive()));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(
                 tabLayout));
     }

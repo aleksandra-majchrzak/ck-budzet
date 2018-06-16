@@ -25,6 +25,9 @@ public interface CkApi {
     @GET("api/categories/{category}/projects")
     Single<List<Project>> getProjects(@Path("category") String category, @Query("per_page") int perPage, @Query("page") int page);
 
+    @GET("api/categories/{category}/projects/archived")
+    Single<List<Project>> getArchiveProjects(@Path("category") String category, @Query("per_page") int perPage, @Query("page") int page);
+
     @POST("api/categories/{category}")
     Single<ResponseBody> createProject(@Path("category") String category, @Body Project project);
 }

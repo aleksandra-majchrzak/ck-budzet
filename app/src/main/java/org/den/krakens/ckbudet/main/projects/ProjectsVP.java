@@ -17,5 +17,7 @@ public interface ProjectsVP {
 
     interface Presenter {
         void loadCategories();
+
+        boolean isArchive();
     }
 }

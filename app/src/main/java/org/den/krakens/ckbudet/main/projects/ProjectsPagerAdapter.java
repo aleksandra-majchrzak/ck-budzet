@@ -15,10 +15,12 @@ import org.den.krakens.ckbudet.main.projects.category.ProjectsCategoryPresenter;
 public class ProjectsPagerAdapter extends FragmentStatePagerAdapter {
 
     private TabLayout tabLayout;
+    private boolean isArchive;
 
-    public ProjectsPagerAdapter(FragmentManager fm, TabLayout tabLayout) {
+    public ProjectsPagerAdapter(FragmentManager fm, TabLayout tabLayout, boolean isArchive) {
         super(fm);
         this.tabLayout = tabLayout;
+        this.isArchive = isArchive;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class ProjectsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         ProjectsCategoryFragment fragment = new ProjectsCategoryFragment();
 
-        fragment.setPresenter(new ProjectsCategoryPresenter(fragment, tabLayout.getTabAt(position).getText().toString()));
+        fragment.setPresenter(new ProjectsCategoryPresenter(fragment, tabLayout.getTabAt(position).getText().toString(), isArchive));
         return fragment;
     }
 }

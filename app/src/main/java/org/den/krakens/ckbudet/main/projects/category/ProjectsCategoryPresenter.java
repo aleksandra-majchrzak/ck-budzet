@@ -14,15 +14,20 @@ public class ProjectsCategoryPresenter implements ProjectsCategoryVP.Presenter, 
     private ProjectsCategoryVP.View view;
 
     private String categoryName;
+    private boolean isArchive;
 
-    public ProjectsCategoryPresenter(ProjectsCategoryVP.View view, String categoryName) {
+    public ProjectsCategoryPresenter(ProjectsCategoryVP.View view, String categoryName, boolean isArchive) {
         this.view = view;
         this.categoryName = categoryName;
+        this.isArchive = isArchive;
     }
 
     @Override
     public void loadProjects() {
-        CkService.getInstance().getProjects(categoryName, this);
+        if (isArchive)
+            CkService.getInstance().getArchiveProjects(categoryName, this);
+        else
+            CkService.getInstance().getProjects(categoryName, this);
     }
 
     @Override

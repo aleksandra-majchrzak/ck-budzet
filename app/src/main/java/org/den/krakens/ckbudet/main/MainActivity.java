@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_projects);
 
         ProjectsFragment fragment = new ProjectsFragment();
-        fragment.setPresenter(new ProjectsPresenter(fragment));
+        fragment.setPresenter(new ProjectsPresenter(fragment, false));
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
@@ -94,10 +94,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_projects) {
             addProjectFab.setVisibility(View.VISIBLE);
             ProjectsFragment fragment = new ProjectsFragment();
-            fragment.setPresenter(new ProjectsPresenter(fragment));
+            fragment.setPresenter(new ProjectsPresenter(fragment, false));
             getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         } else if (id == R.id.nav_archive) {
             addProjectFab.setVisibility(View.GONE);
+            ProjectsFragment fragment = new ProjectsFragment();
+            fragment.setPresenter(new ProjectsPresenter(fragment, true));
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 
         } else if (id == R.id.nav_yours) {
             addProjectFab.setVisibility(View.GONE);

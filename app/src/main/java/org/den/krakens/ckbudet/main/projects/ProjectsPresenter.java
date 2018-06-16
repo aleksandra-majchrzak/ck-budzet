@@ -13,14 +13,21 @@ import java.util.List;
 public class ProjectsPresenter implements ProjectsVP.Presenter, OnGetCategoriesListener {
 
     private ProjectsVP.View view;
+    private boolean isArchive;
 
-    public ProjectsPresenter(ProjectsVP.View view) {
+    public ProjectsPresenter(ProjectsVP.View view, boolean isArchive) {
         this.view = view;
+        this.isArchive = isArchive;
     }
 
     @Override
     public void loadCategories() {
         CkService.getInstance().getCategories(this);
+    }
+
+    @Override
+    public boolean isArchive() {
+        return isArchive;
     }
 
     @Override
