@@ -2,6 +2,7 @@ package org.den.krakens.ckbudet.main.api;
 
 import org.den.krakens.ckbudet.main.api.listeners.OnCreateProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetCategoriesListener;
+import org.den.krakens.ckbudet.main.api.listeners.OnGetMyProjectsListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnGetProjectsListener;
 import org.den.krakens.ckbudet.main.api.listeners.OnLoginListener;
@@ -9,6 +10,7 @@ import org.den.krakens.ckbudet.main.api.observers.CategoriesObserver;
 import org.den.krakens.ckbudet.main.api.observers.CreateProjectObserver;
 import org.den.krakens.ckbudet.main.api.observers.GetProjectObserver;
 import org.den.krakens.ckbudet.main.api.observers.LoginObserver;
+import org.den.krakens.ckbudet.main.api.observers.MyProjectsObserver;
 import org.den.krakens.ckbudet.main.api.observers.ProjectsObserver;
 import org.den.krakens.ckbudet.main.models.Project;
 import org.den.krakens.ckbudet.main.models.Token;
@@ -81,8 +83,8 @@ public class CkService implements OnLoginListener {
         api.getProject(token.getToken(), category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
     }
 
-    public void getMyProjects(String category, int projectId, OnGetProjectListener listener) {
-        api.getProject(token.getToken(), category, projectId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new GetProjectObserver(listener));
+    public void getMyProjects(OnGetMyProjectsListener listener) {
+        api.getMyProjects(token.getToken()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new MyProjectsObserver(listener));
     }
 
     public void createProject(Project project, OnCreateProjectListener listener) {
